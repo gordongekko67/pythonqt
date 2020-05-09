@@ -1,7 +1,8 @@
 import sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QPushButton, QAction, QLineEdit, QMessageBox
+from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QPushButton, QAction, QLineEdit, QMessageBox, QLabel
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot
+from docutils.nodes import label
 
 
 class App(QMainWindow):
@@ -19,15 +20,25 @@ class App(QMainWindow):
         self.setWindowTitle(self.title)
         self.setGeometry(self.left, self.top, self.width, self.height)
 
+
+
         # Create textbox
-        self.textbox = QLineEdit(self)
-        self.textbox.move(20, 20)
-        self.textbox.resize(280, 40)
 
-        self.textbox2 = QLineEdit(self)
-        self.textbox2.move(20, 60)
-        self.textbox2.resize(280, 40)
+        self.nameLabel = QLabel(self)
+        self.nameLabel.setText('Name:')
+        self.line = QLineEdit(self)
 
+        self.line.move(80, 20)
+        self.line.resize(200, 32)
+        self.nameLabel.move(20, 20)
+
+        self.nameLabel2 = QLabel(self)
+        self.nameLabel2.setText('Cognome:')
+        self.line2 = QLineEdit(self)
+
+        self.line2.move(80, 60)
+        self.line2.resize(200, 32)
+        self.nameLabel2.move(20, 60)
 
 
         # Create a button in the window
@@ -40,7 +51,7 @@ class App(QMainWindow):
 
     @pyqtSlot()
     def on_click(self):
-        textboxValue = self.textbox.text()
+        textboxValue = self.line.text()
         if (textboxValue == ""):
 
             QMessageBox.question(self, 'Message - pythonspot.com', "You typed  Blank: " + textboxValue, QMessageBox.Ok,
